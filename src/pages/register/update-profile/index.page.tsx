@@ -18,13 +18,10 @@ import { api } from '../../../lib/axios'
 import { buildNextAuthOptions } from '../../api/auth/[...nextAuth].api'
 import { Container, Header } from '../styles'
 import { FormAnnotation, ProfileBox } from './styles'
-
 const updateProfileSchema = z.object({
   bio: z.string(),
 })
-
 type UpdateProfileData = z.infer<typeof updateProfileSchema>
-
 export default function UpdateProfile() {
   const {
     register,
@@ -74,7 +71,6 @@ export default function UpdateProfile() {
             Fale um pouco sobre você. Isto será exibido em sua página pessoal.
           </FormAnnotation>
         </label>
-
         <Button type="submit" disabled={isSubmitting}>
           Finalizar
           <ArrowRight />
@@ -83,14 +79,12 @@ export default function UpdateProfile() {
     </Container>
   )
 }
-
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await unstable_getServerSession(
     req,
     res,
     buildNextAuthOptions(req, res),
   )
-
   return {
     props: {
       session,

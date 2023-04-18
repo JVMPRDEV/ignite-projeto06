@@ -21,6 +21,7 @@ export default async function handler(
   if (req.method !== 'POST') {
     return res.status(405).end()
   }
+
   const session = await unstable_getServerSession(
     req,
     res,

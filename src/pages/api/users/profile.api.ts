@@ -2,7 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { z } from 'zod'
 import { prisma } from '../../../lib/prisma'
+<<<<<<< HEAD
 import { buildNextAuthOptions } from '../auth/[...nextauth].api'
+=======
+import { buildNextAuthOptions } from '../auth/[...nextAuth].api'
+>>>>>>> c058e088347bf728f005762bfe4a4348e8777d89
 
 const updateProfileBodySchema = z.object({
   bio: z.string(),

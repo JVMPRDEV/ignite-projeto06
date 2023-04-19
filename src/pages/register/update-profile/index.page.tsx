@@ -16,7 +16,11 @@ import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { api } from '../../../lib/axios'
+<<<<<<< HEAD
 import { buildNextAuthOptions } from '../../api/auth/[...nextauth].api'
+=======
+import { buildNextAuthOptions } from '../../api/auth/[...nextAuth].api'
+>>>>>>> c058e088347bf728f005762bfe4a4348e8777d89
 import { Container, Header } from '../styles'
 import { FormAnnotation, ProfileBox } from './styles'
 

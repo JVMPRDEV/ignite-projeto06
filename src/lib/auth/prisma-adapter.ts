@@ -60,7 +60,6 @@ export function PrismaAdapter(
         avatar_url: user.avatar_url!,
       }
     },
-
     async getUserByEmail(email) {
       const user = await prisma.user.findUnique({
         where: {
@@ -81,7 +80,6 @@ export function PrismaAdapter(
         avatar_url: user.avatar_url!,
       }
     },
-
     async getUserByAccount({ providerAccountId, provider }) {
       const account = await prisma.account.findUnique({
         where: {

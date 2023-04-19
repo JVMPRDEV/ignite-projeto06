@@ -16,13 +16,16 @@ import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { api } from '../../../lib/axios'
-import { buildNextAuthOptions } from '../../api/auth/[...nextAuth].api'
+import { buildNextAuthOptions } from '../../api/auth/[...nextauth].api'
 import { Container, Header } from '../styles'
 import { FormAnnotation, ProfileBox } from './styles'
+
 const updateProfileSchema = z.object({
   bio: z.string(),
 })
+
 type UpdateProfileData = z.infer<typeof updateProfileSchema>
+
 export default function UpdateProfile() {
   const {
     register,
@@ -31,12 +34,15 @@ export default function UpdateProfile() {
   } = useForm<UpdateProfileData>({
     resolver: zodResolver(updateProfileSchema),
   })
+
   const session = useSession()
   const router = useRouter()
+
   async function handleUpdateProfile(data: UpdateProfileData) {
     await api.put('/users/profile', {
       bio: data.bio,
     })
+
     await router.push(`/schedule/${session.data?.user.username}`)
   }
 
@@ -89,6 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     res,
     buildNextAuthOptions(req, res),
   )
+
   return {
     props: {
       session,

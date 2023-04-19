@@ -8,7 +8,9 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { api } from '../../lib/axios'
+
 import { Container, Form, FormError, Header } from './styles'
+
 const registerFormSchema = z.object({
   username: z
     .string()
@@ -21,7 +23,9 @@ const registerFormSchema = z.object({
     .string()
     .min(3, { message: 'O nome precisa ter pelo menos 3 letras.' }),
 })
+
 type RegisterFormData = z.infer<typeof registerFormSchema>
+
 export default function Register() {
   const {
     register,
@@ -31,24 +35,29 @@ export default function Register() {
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
   })
+
   const router = useRouter()
+
   useEffect(() => {
     if (router.query.username) {
       setValue('username', String(router.query.username))
     }
   }, [router.query?.username, setValue])
+
   async function handleRegister(data: RegisterFormData) {
     try {
       await api.post('/users', {
         name: data.name,
         username: data.username,
       })
+
       await router.push('/register/connect-calendar')
     } catch (err) {
       if (err instanceof AxiosError && err?.response?.data?.message) {
         alert(err.response.data.message)
         return
       }
+
       console.error(err)
     }
   }

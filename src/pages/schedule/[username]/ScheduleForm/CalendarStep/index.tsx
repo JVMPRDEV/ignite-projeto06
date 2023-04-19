@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { Calendar } from '../../../../../components/Calendar'
 import { api } from '../../../../../lib/axios'
-
 import {
   Container,
   TimePicker,
@@ -24,6 +23,7 @@ interface CalendarStepProps {
 
 export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+
   const router = useRouter()
 
   const isDateSelected = !!selectedDate
@@ -66,6 +66,7 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
   return (
     <Container isTimePickerOpen={isDateSelected}>
       <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
+
       {isDateSelected && (
         <TimePicker>
           <TimePickerHeader>

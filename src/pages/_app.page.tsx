@@ -24,6 +24,7 @@ export default function App({
             siteName: 'Ignite Call',
           }}
         />
+
         <Component {...pageProps} />
       </SessionProvider>
     </QueryClientProvider>

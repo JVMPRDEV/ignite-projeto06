@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse, NextPageContext } from 'next'
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
+// verificar import
 import { PrismaAdapter } from '../../../lib/auth/prisma-adapter'
 
 export function buildNextAuthOptions(
@@ -9,7 +10,6 @@ export function buildNextAuthOptions(
 ): NextAuthOptions {
   return {
     adapter: PrismaAdapter(req, res),
-
     providers: [
       GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID ?? '',
@@ -34,7 +34,6 @@ export function buildNextAuthOptions(
         },
       }),
     ],
-
     callbacks: {
       async signIn({ account }) {
         if (
@@ -45,7 +44,6 @@ export function buildNextAuthOptions(
 
         return true
       },
-
       async session({ session, user }) {
         return {
           ...session,
